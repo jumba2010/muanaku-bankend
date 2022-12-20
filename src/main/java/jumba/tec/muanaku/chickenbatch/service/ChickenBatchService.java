@@ -1,6 +1,8 @@
 package jumba.tec.muanaku.chickenbatch.service;
 
 import jumba.tec.muanaku.chickenbatch.domain.ChickenBatch;
+import jumba.tec.muanaku.chickenbatch.dto.ChickenBatchDTO;
+import jumba.tec.muanaku.utils.PageDto;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ public interface ChickenBatchService {
 
     void update(ChickenBatch chickenBatch);
 
-    List<ChickenBatch> findByCompanyId(final Long companyId);
+    PageDto<ChickenBatchDTO> findByCompanyId(final Long companyId,int limit, int offset);
 
-    ChickenBatch findById(Long id);
+    ChickenBatchDTO findById(Long id);
 }
