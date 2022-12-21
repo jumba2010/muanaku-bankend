@@ -75,8 +75,6 @@ public class ChickenBatchServiceImpl implements ChickenBatchService {
                     List<FeedPrevision> feedPrevisions=feedPrevisionRepository.findByCompanyId(chickenBatchDTO.getCompanyId());
                     chickenBatchDTO.setExpectedConsumption(calculateConsumption(feedPrevisions,chickenBatchDTO.getEntranceDate(),chickenBatchDTO.getNrOfAliveChickens()));
                 }).findFirst().get();
-
-
     }
 
     private double calculateConsumption(final List<FeedPrevision> feedPrevisions,LocalDate entranceDate,int aliveQuantity){
