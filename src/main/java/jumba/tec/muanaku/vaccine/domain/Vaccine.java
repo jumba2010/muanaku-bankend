@@ -14,11 +14,17 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@Builder
 @Entity
 @TypeDef(name = "json", typeClass = JsonBinaryType.class)
 public class Vaccine {
@@ -27,19 +33,23 @@ public class Vaccine {
     private Long Id;
 
     @Column(name="created_at",nullable = false)
-    private Instant createdAt;
+    private Instant createdAt=Instant.now();
 
+    @NotBlank
+    @Max(value = 100)
     @Column(name="name",nullable = false)
     private String name;
 
+    @Min(value = 1)
     @Column(name="number_of_doses",nullable = false)
     private int numberOfDoses;
 
     @Type(type = "json")
+    @NotEmpty
     @Column(columnDefinition = "jsonb")
-    @Builder.Default
     private List<Dose> doses;
 
+    @NotNull
     @Column(name="company_id",nullable = false)
     private Long companyId;
 
